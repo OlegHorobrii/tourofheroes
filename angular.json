@@ -93,6 +93,97 @@
           }
         }
       }
+    },
+    "hero.ts": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/hero.ts",
+      "sourceRoot": "projects/hero.ts/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/hero.ts",
+            "index": "projects/hero.ts/src/index.html",
+            "main": "projects/hero.ts/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/hero.ts/tsconfig.app.json",
+            "assets": [
+              "projects/hero.ts/src/favicon.ico",
+              "projects/hero.ts/src/assets"
+            ],
+            "styles": [
+              "projects/hero.ts/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "hero.ts:build:production"
+            },
+            "development": {
+              "browserTarget": "hero.ts:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "hero.ts:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/hero.ts/tsconfig.spec.json",
+            "assets": [
+              "projects/hero.ts/src/favicon.ico",
+              "projects/hero.ts/src/assets"
+            ],
+            "styles": [
+              "projects/hero.ts/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   }
 }
